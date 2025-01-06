@@ -37,12 +37,12 @@ def apply_stronger_glitch_with_color(image):
 
     # Apply row and column shifts for glitch effect
     for i in range(num_rows):
-        if random.random() < 0.2:  # 20% chance to shift a row
+        if random.random() < 0.7:  # 20% chance to shift a row
             shift = random.randint(-50, 50)
             img_array[i] = np.roll(img_array[i], shift, axis=0)
 
     for j in range(num_cols):
-        if random.random() < 0.1:  # 10% chance to shift a column
+        if random.random() < 0.7:  # 10% chance to shift a column
             shift = random.randint(-30, 30)
             img_array[:, j] = np.roll(img_array[:, j], shift, axis=0)
 
