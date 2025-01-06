@@ -20,7 +20,49 @@ def apply_glitch(image):
     # Convert back to image
     glitched_image = Image.fromarray(img_array)
     return glitched_image
+def apply_stronger_glitch_with_color(image):
+    # Convert image to numpy array
+    img_array = np.array(image)
 
+    # Get dimensions
+    num_rows, num_cols, num_channels = img_array.shape
+
+    # Apply row and column shifts for glitch effect
+    for i in range(num_rows):
+        if random.random() < 0.2:  # 20% chance to shift a row
+            shift = random.randint(-50, 50)
+            img_array[i] = np.roll(img_array[i], shift, axis=0)
+
+    for j in range(num_cols):
+        if random.random() < 0.1:  # 10% chance to shift a column
+            shift = random.randint(-30, 30)
+            img_array[:, j] = np.roll(img_array[:, j], shift, axis=0)
+
+    # Introduce RGB channel distortions
+    for channel in range(3):  # Loop over RGB channels
+        if random.random() < 0.3:  # 30% chance to distort a channel
+            distortion = random.randint(-20, 20)
+            img_array[:, :, channel] = np.roll(img_array[:, :, channel], distortion, axis=0)
+
+    # Add random colored stripes
+    for _ in range(10):  # Add 10 random stripes
+        stripe_start = random.randint(0, num_rows - 1)
+        stripe_height = random.randint(1, 10)  # Stripe height between 1-10 pixels
+        color = np.random.randint(0, 255, size=(1, num_cols, 3), dtype='uint8')  # Random RGB color
+        img_array[stripe_start:stripe_start + stripe_height, :, :] = color
+
+    # Add gradient colors to random sections
+    for _ in range(5):  # Apply 5 gradient effects
+        start_row = random.randint(0, num_rows - 1)
+        end_row = min(start_row + random.randint(10, 50), num_rows - 1)
+        gradient = np.linspace(0, 255, end_row - start_row, dtype='uint8')
+        gradient_color = np.zeros((end_row - start_row, num_cols, 3), dtype='uint8')
+        gradient_color[:, :, random.randint(0, 2)] = gradient[:, None]  # Apply gradient to a random channel
+        img_array[start_row:end_row, :, :] = np.clip(img_array[start_row:end_row, :, :] + gradient_color, 0, 255)
+
+    # Convert back to image
+    glitched_image = Image.fromarray(img_array)
+    return glitched_image
 # Function to pick a random image from a folder
 def pick_random_image(folder_path):
     images = [f for f in os.listdir(folder_path) if f.endswith(('png', 'jpg', 'jpeg'))]
@@ -50,8 +92,8 @@ def main():
             image = Image.open(image_path)
             
             # Apply glitch effect
-            glitched_image = apply_glitch(image)
-            
+            #glitched_image = apply_glitch(image)
+            glitched_image = apply_stronger_glitch_with_color(image)
             # Display the glitched image
             #st.image(glitched_image, "Glitched Image", use_column_width=True)
             width = 300
