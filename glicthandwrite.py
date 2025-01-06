@@ -14,7 +14,7 @@ def apply_glitch(image):
     #shift = random.randint(1, 30)  # Shift by 1 to 30 pixels
     shift = random.randint(1, 20)  # Shift by 1 to 70 pixels
     for i in range(num_rows):
-        if random.random() < 0.5:  # i chnaged upeed from 0.1 10% chance to apply a shift to a row
+        if random.random() < 0.7:  # i chnaged upeed from 0.1 10% chance to apply a shift to a row
             img_array[i] = np.roll(img_array[i], shift, axis=0)
     
     # Convert back to image
