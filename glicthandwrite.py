@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import random
 from PIL import Image, ImageEnhance
+from PIL import ImageOps
 import numpy as np
 
 # Function to apply a glitch effect to an image
@@ -21,10 +22,17 @@ def apply_glitch(image):
     glitched_image = Image.fromarray(img_array)
     return glitched_image
 def apply_stronger_glitch_with_color(image):
+    # Ensure the image is in RGB mode
+    if image.mode != 'RGB':
+        image = ImageOps.colorize(image.convert('L'), black="black", white="white")
+    
     # Convert image to numpy array
     img_array = np.array(image)
 
     # Get dimensions
+    if len(img_array.shape) == 2:  # Handle grayscale images
+        img_array = np.stack((img_array,) * 3, axis=-1)  # Convert to RGB
+
     num_rows, num_cols, num_channels = img_array.shape
 
     # Apply row and column shifts for glitch effect
