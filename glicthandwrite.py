@@ -52,9 +52,9 @@ def main():
             glitched_image = apply_glitch(image)
             
             # Display the glitched image
-            #st.image(glitched_image, caption="Glitched Image", use_column_width=True)
+            #st.image(glitched_image, "Glitched Image", use_column_width=True)
             width = 300
-            st.image(glitched_image, caption="Glitched Image", width)
+            st.image(glitched_image, "Glitched Image", width)
             # Overwrite the original image with the glitched version
             save_glitched_image(image_path, glitched_image)
             st.success(f"Glitched image saved and overwritten {image_path}.")
