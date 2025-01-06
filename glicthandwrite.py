@@ -100,8 +100,7 @@ def main():
         try:
             # Pick a random image
             image_path = pick_random_image(folder_path)
-            #st.image(image_path, caption="Original Image", use_column_width=True)
-            st.image(image_path, "Original Image", 300)
+            #st.image(image_path, "Original Image", 300)
             # Load the image
             image = Image.open(image_path)
             
