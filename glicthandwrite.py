@@ -94,6 +94,7 @@ def save_glitched_image(original_path, glitched_image):
 def main():
     st.title("Glitch & Rewild")
     st.text("Glitch & overwrite dubious image data sets")
+    st.text("Release them back into the wild as untrainable mugshots")
     st.button("break another one")
     folder_path = "glics"
 
