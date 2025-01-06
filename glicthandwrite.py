@@ -92,7 +92,8 @@ def save_glitched_image(original_path, glitched_image):
 
 # Streamlit app
 def main():
-    st.title("Glitch & overwrite dubious data sets")
+    st.title("Glitch & Rewild")
+    st.text("Glitch & overwrite dubious image data sets")
     st.button("break another one")
     folder_path = "glics"
 
