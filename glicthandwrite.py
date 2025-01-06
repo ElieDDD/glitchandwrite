@@ -35,8 +35,8 @@ def save_glitched_image(original_path, glitched_image):
 
 # Streamlit app
 def main():
-    st.title("Random Image Glitcher")
-    
+    st.title("Glitch image data sets")
+    st.button("break another one")
     folder_path = "glics"
 
     if folder_path and os.path.exists(folder_path):
