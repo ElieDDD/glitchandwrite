@@ -81,8 +81,14 @@ def pick_random_image(folder_path):
     return image_path
 
 # Function to save the glitched image, overwriting the original
+#def save_glitched_image(original_path, glitched_image):
+    #glitched_image.save(original_path)
+
 def save_glitched_image(original_path, glitched_image):
+    # Save the glitched image directly to the same path
     glitched_image.save(original_path)
+    print(f"Image overwritten: {original_path}")
+
 
 # Streamlit app
 def main():
